@@ -482,7 +482,7 @@ static bool updateLogoPath(void) {
     FF_LIST_FOR_EACH (FFstrbuf, dataDir, instance.state.platform.dataDirs) {
         // We need to copy it, because multiple threads might be using dataDirs at the same time
         ffStrbufSet(&fullPath, dataDir);
-        ffStrbufAppendS(&fullPath, "fastfetch/logos/");
+        ffStrbufAppendS(&fullPath, "autofetch/logos/");
         ffStrbufAppend(&fullPath, &options->source);
 
         if (ffPathExists(fullPath.chars, FF_PATHTYPE_FILE)) {

@@ -27,17 +27,17 @@ jobs:
             export PKG_CONFIG_PATH=/usr/lib/64/pkgconfig
             cmake -DSET_TWEAK=Off -DBUILD_TESTS=On -GNinja .
             cmake --build . --verbose -j4
-            ./fastfetch --list-features
-            time ./fastfetch -c presets/ci.jsonc --stat false
-            time ./fastfetch -c presets/ci.jsonc --format json
+            ./autofetch --list-features
+            time ./autofetch -c presets/ci.jsonc --stat false
+            time ./autofetch -c presets/ci.jsonc --format json
             time ./flashfetch
-            ldd fastfetch
+            ldd autofetch
             ctest --output-on-failure
-            echo 'set(CPACK_PACKAGE_FILE_NAME "fastfetch-solaris-amd64")' >> CPackConfig.cmake
+            echo 'set(CPACK_PACKAGE_FILE_NAME "autofetch-solaris-amd64")' >> CPackConfig.cmake
             cpack -V
 
       - name: upload artifacts
         uses: actions/upload-artifact@v7
         with:
-          name: fastfetch-solaris-amd64
-          path: ./fastfetch-*.*
+          name: autofetch-solaris-amd64
+          path: ./autofetch-*.*

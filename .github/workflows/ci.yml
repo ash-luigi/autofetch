@@ -191,7 +191,7 @@ jobs:
     secrets: inherit
 
   release:
-    if: github.event_name == 'push' && github.ref == 'refs/heads/master' && github.repository == 'fastfetch-cli/fastfetch'
+    if: github.event_name == 'push' && github.ref == 'refs/heads/master' && github.repository == 'ash-luigi/autofetch'
     name: Release
     needs:
       - linux-hosts

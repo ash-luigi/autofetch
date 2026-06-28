@@ -28,15 +28,15 @@ jobs:
             sudo pkg install -y cmake git pkgconf binutils wayland vulkan-headers vulkan-loader libxcb libXrandr libX11 libdrm glib dconf dbus sqlite3-tcl egl opencl ocl-icd v4l_compat chafa lua54 libva libvdpau
             cmake -DSET_TWEAK=Off -DBUILD_TESTS=On -DENABLE_EMBEDDED_PCIIDS=On -DENABLE_EMBEDDED_AMDGPUIDS=On .
             cmake --build . --target package --verbose -j4
-            ./fastfetch --list-features
-            time ./fastfetch -c presets/ci.jsonc --stat false
-            time ./fastfetch -c presets/ci.jsonc --format json
+            ./autofetch --list-features
+            time ./autofetch -c presets/ci.jsonc --stat false
+            time ./autofetch -c presets/ci.jsonc --format json
             time ./flashfetch
-            ldd fastfetch
+            ldd autofetch
             ctest --output-on-failure
 
       - name: upload artifacts
         uses: actions/upload-artifact@v7
         with:
-          name: fastfetch-freebsd-amd64
-          path: ./fastfetch-*.*
+          name: autofetch-freebsd-amd64
+          path: ./autofetch-*.*

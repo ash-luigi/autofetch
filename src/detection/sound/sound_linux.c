@@ -84,7 +84,7 @@ static const char* detectSound(FFSoundOptions* options, FFlist* devices) {
         return "Failed to get pulseaudio mainloop api";
     }
 
-    pa_context* context = ffpa_context_new(mainloopApi, "fastfetch");
+    pa_context* context = ffpa_context_new(mainloopApi, "autofetch");
     if (!context) {
         ffpa_mainloop_free(mainloop);
         return "Failed to create pulseaudio context";
@@ -159,6 +159,6 @@ const char* ffDetectSound(FFSoundOptions* options, FFlist* devices) {
     return detectSound(options, devices);
 #else
     FF_UNUSED(options, devices);
-    return "Fastfetch was built without libpulse support";
+    return "Autofetch was built without libpulse support";
 #endif
 }

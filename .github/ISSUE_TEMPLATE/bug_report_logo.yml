@@ -29,8 +29,8 @@ body:
   - type: input
     attributes:
       label: Version used
-      description: Fastfetch version used. Please use the latest version (found in the [releases](https://github.com/fastfetch-cli/fastfetch/releases)) if possible.
-      placeholder: Result of `fastfetch --version`
+      description: autofetch version used. Please use the latest version (found in the [releases](https://github.com/ash-luigi/autofetch/releases)) if possible.
+      placeholder: Result of `autofetch --version`
     validations:
       required: true
   - type: dropdown
@@ -60,7 +60,7 @@ body:
   - type: dropdown
     attributes:
       label: Installation
-      description: Where did you install fastfetch from?
+      description: Where did you install autofetch from?
       options:
         -
         - GitHub Releases
@@ -85,7 +85,7 @@ body:
     attributes:
       label: Configuration
       description: If applicable, paste your configuration file here.
-      placeholder: cat ~/.config/fastfetch/config.jsonc
+      placeholder: cat ~/.config/autofetch/config.jsonc
       render: jsonc
   - type: markdown
     attributes:
@@ -96,8 +96,8 @@ body:
         Note that GNOME Terminal doesn't support any image protocols as of now
 
         Some tips:
-        1. Try `fastfetch --show-errors` to see if there are any errors.
-        2. Try `fastfetch --logo-width {WIDTH} --logo-height {HEIGHT}`. Some protocols may require a image size being set.
+        1. Try `autofetch --show-errors` to see if there are any errors.
+        2. Try `autofetch --logo-width {WIDTH} --logo-height {HEIGHT}`. Some protocols may require a image size being set.
   - type: input
     attributes:
       label: Image protocol
@@ -119,11 +119,11 @@ body:
   - type: textarea
     attributes:
       label: Error message
-      description: Error message printed by `fastfetch -s none --show-errors`, if any
+      description: Error message printed by `autofetch -s none --show-errors`, if any
   - type: textarea
     attributes:
       label: Features built-in
-      description: Output of `fastfetch --list-features`
+      description: Output of `autofetch --list-features`
       render: text
     validations:
       required: true

@@ -124,7 +124,7 @@ const char* ffDetectZpool(FFlist* result /* list of FFZpoolResult */) {
 #else
 
 const char* ffDetectZpool(FF_A_UNUSED FFlist* result) {
-    return "fastfetch was compiled without libzfs support";
+    return "Autofetch was compiled without libzfs support";
 }
 
 #endif

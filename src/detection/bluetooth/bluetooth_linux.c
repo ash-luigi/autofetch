@@ -251,6 +251,6 @@ const char* ffDetectBluetooth(FFBluetoothOptions* options, FFlist* devices /* FF
     return detectBluetooth(options, devices, connectedCount);
 #else
     FF_UNUSED(options, devices);
-    return "Fastfetch was compiled without DBus support";
+    return "Autofetch was compiled without DBus support";
 #endif
 }

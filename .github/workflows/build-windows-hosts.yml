@@ -52,55 +52,55 @@ jobs:
         run: cp /${{ inputs.msystem-lower }}/bin/{lua55,libqjs-0}.dll .
 
       - name: list features
-        run: ./fastfetch --list-features
+        run: ./autofetch --list-features
 
-      - name: run fastfetch
-        run: time ./fastfetch -c presets/ci.jsonc --stat false
+      - name: run autofetch
+        run: time ./autofetch -c presets/ci.jsonc --stat false
 
-      - name: run fastfetch --format json
-        run: time ./fastfetch -c presets/ci.jsonc --format json
+      - name: run autofetch --format json
+        run: time ./autofetch -c presets/ci.jsonc --format json
 
       - name: run flashfetch
         run: time ./flashfetch
 
       - name: print dependencies
-        run: ldd fastfetch
+        run: ldd autofetch
 
       - name: run tests
         run: ctest --output-on-failure
 
-      - if: github.event_name == 'push' && github.repository == 'fastfetch-cli/fastfetch'
+      - if: github.event_name == 'push' && github.repository == 'ash-luigi/autofetch'
         id: upload-unsigned-artifact
         name: upload artifacts for signing
         uses: actions/upload-artifact@v7
         with:
-          name: fastfetch-windows-${{ inputs.arch }}
+          name: autofetch-windows-${{ inputs.arch }}
           path: |
             *.dll
-            fastfetch.exe
+            autofetch.exe
             flashfetch.exe
 
-      - if: github.event_name == 'push' && github.repository == 'fastfetch-cli/fastfetch'
+      - if: github.event_name == 'push' && github.repository == 'ash-luigi/autofetch'
         name: submit signing request
         uses: signpath/github-action-submit-signing-request@v1
         with:
           api-token: '${{ secrets.SIGNPATH_API_TOKEN }}'
           organization-id: '${{ vars.SIGNPATH_ORG_ID }}'
-          project-slug: 'fastfetch'
+          project-slug: 'autofetch'
           signing-policy-slug: ${{ github.ref == 'refs/heads/master' && 'release-signing' || 'test-signing' }}
           github-artifact-id: '${{ steps.upload-unsigned-artifact.outputs.artifact-id }}'
           wait-for-completion: true
           output-artifact-directory: '.'
 
       - name: create zip archive
-        run: 7z a -tzip -mx9 -bd -y fastfetch-windows-${{ inputs.arch }}.zip LICENSE *.dll fastfetch.exe flashfetch.exe presets
+        run: 7z a -tzip -mx9 -bd -y autofetch-windows-${{ inputs.arch }}.zip LICENSE *.dll autofetch.exe flashfetch.exe presets
 
       - name: create 7z archive
-        run: 7z a -t7z -mx9 -bd -y fastfetch-windows-${{ inputs.arch }}.7z LICENSE *.dll fastfetch.exe flashfetch.exe presets
+        run: 7z a -t7z -mx9 -bd -y autofetch-windows-${{ inputs.arch }}.7z LICENSE *.dll autofetch.exe flashfetch.exe presets
 
       - name: upload true artifacts
         uses: actions/upload-artifact@v7
         with:
-          name: fastfetch-windows-${{ inputs.arch }}
-          path: ./fastfetch-windows-${{ inputs.arch }}.*
+          name: autofetch-windows-${{ inputs.arch }}
+          path: ./autofetch-windows-${{ inputs.arch }}.*
           overwrite: true

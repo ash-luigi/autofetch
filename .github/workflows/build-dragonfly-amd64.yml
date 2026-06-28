@@ -26,15 +26,15 @@ jobs:
           run: |
             env CC=clang cmake -DSET_TWEAK=Off -DBUILD_TESTS=On -DENABLE_EMBEDDED_PCIIDS=On -DENABLE_EMBEDDED_AMDGPUIDS=On .
             cmake --build . --target package --verbose -j4
-            ./fastfetch --list-features
-            time ./fastfetch -c presets/ci.jsonc --stat false
-            time ./fastfetch -c presets/ci.jsonc --format json
+            ./autofetch --list-features
+            time ./autofetch -c presets/ci.jsonc --stat false
+            time ./autofetch -c presets/ci.jsonc --format json
             time ./flashfetch
-            ldd fastfetch
+            ldd autofetch
             ctest --output-on-failure
 
       - name: upload artifacts
         uses: actions/upload-artifact@v7
         with:
-          name: fastfetch-dragonfly-amd64
-          path: ./fastfetch-*.*
+          name: autofetch-dragonfly-amd64
+          path: ./autofetch-*.*

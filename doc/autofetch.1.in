@@ -1,21 +1,21 @@
-.TH FASTFETCH 1 "@FASTFETCH_BUILD_DATE@" "@CMAKE_PROJECT_NAME@ @CMAKE_PROJECT_VERSION@"
+.TH AUTOFETCH 1 "@FASTFETCH_BUILD_DATE@" "@CMAKE_PROJECT_NAME@ @CMAKE_PROJECT_VERSION@"
 
 .SH NAME
-fastfetch \- a fast and customizable system information tool similar to neofetch
+autofetch \- a system information fetching tool with automatic logo detection and text art generation
 
 .SH SYNOPSIS
 
-.B fastfetch
+.B autofetch
 .I [options...]
 
 .SH DESCRIPTION
 
-Fastfetch is a tool for displaying system information in a visually appealing way. Written primarily in C, it focuses on performance and customizability while providing functionality similar to neofetch.
-It supports Linux, Android, *BSD, macOS, Haiku, and Windows 7 or newer.
+Autofetch is a tool for displaying system information with automatic logo detection and text art generation. Forked from autofetch, written primarily in C.
+It supports Linux, Android, *BSD, macOS, Haiku, and Windows 8.1 or newer.
 
 .SH "EXIT STATUS"
 
-Fastfetch returns zero on successful execution. Any errors result in a non-zero exit code.
+Autofetch returns zero on successful execution. Any errors result in a non-zero exit code.
 
 .SH OPTIONS
 
@@ -27,7 +27,7 @@ Display help information for all available options or for a specific command
 .TP
 
 .B \-v, \-\-version
-Display the version of fastfetch
+Display the version of autofetch
 .TP
 
 .B \-\-version\-raw
@@ -55,7 +55,7 @@ List available presets that can be loaded with \fI\-\-config
 .TP
 
 .B \-\-list\-features
-List the features that fastfetch was compiled with (mainly for development)
+List the features that autofetch was compiled with (mainly for development)
 .TP
 
 .B \-\-print\-logos
@@ -83,7 +83,7 @@ Use the specified config file or preset. Specify \fInone\fR to disable further c
 .TP
 
 .B \-\-gen\-config \fI[path]
-Generate a config file with options specified on the command line. If \fIpath\fR is not specified, it defaults to \fB~/.config/fastfetch/config.jsonc\fR. If \fIpath\fR is "\-", the configuration will be written to stdout.
+Generate a config file with options specified on the command line. If \fIpath\fR is not specified, it defaults to \fB~/.config/autofetch/config.jsonc\fR. If \fIpath\fR is "\-", the configuration will be written to stdout.
 .TP
 
 .B \-\-gen\-config\-force \fI[path]
@@ -157,9 +157,9 @@ To list all available modules, use \fB\-\-list\-modules\fR
 
 .SS "Config Files"
 
-Fastfetch uses JSONC for configuration files. JSONC is JSON with support for comments (// and /* */). Configuration files must have the .jsonc extension.
+Autofetch uses JSONC for configuration files. JSONC is JSON with support for comments (// and /* */). Configuration files must have the .jsonc extension.
 
-You can generate a default config file using \fB\-\-gen\-config\fR. By default, the config file is saved at \fB~/.config/fastfetch/config.jsonc\fR.
+You can generate a default config file using \fB\-\-gen\-config\fR. By default, the config file is saved at \fB~/.config/autofetch/config.jsonc\fR.
 
 The configuration/preset files are searched in the following locations (in order):
 
@@ -167,56 +167,56 @@ The configuration/preset files are searched in the following locations (in order
 .IP 1. 4
 Relative to the current working directory
 .IP 2. 4
-Relative to ~/.local/share/fastfetch/presets/
+Relative to ~/.local/share/autofetch/presets/
 .IP 3. 4
-Relative to /usr/share/fastfetch/presets/
+Relative to /usr/share/autofetch/presets/
 .RE
 
 For detailed information on logo options, module configuration, and formatting, visit:
 .RS
-\fIhttps://github.com/fastfetch-cli/fastfetch/wiki/Configuration\fR
+\fIhttps://github.com/ash-luigi/autofetch/wiki/Configuration\fR
 .RE
 
-Fastfetch provides several built-in presets. List them with \fB\-\-list\-presets\fR.
+Autofetch provides several built-in presets. List them with \fB\-\-list\-presets\fR.
 
 .SS "JSON Schema"
 A JSON schema is available for editor intelligence when editing the configuration file. Add the following line at the beginning of your config file:
 .PP
-\fB"$schema": "https://github.com/fastfetch-cli/fastfetch/raw/dev/doc/json_schema.json"\fR
+\fB"$schema": "https://github.com/ash-luigi/autofetch/raw/dev/doc/json_schema.json"\fR
 
 .SH EXAMPLES
 .TP
 Basic usage:
 .RS
-\fBfastfetch\fR
+\fBautofetch\fR
 .RE
 .TP
 Use a specific logo:
 .RS
-\fBfastfetch \-\-logo arch\fR
+\fBautofetch \-\-logo arch\fR
 .RE
 .TP
 Custom structure:
 .RS
-\fBfastfetch \-\-structure title:os:kernel:uptime:memory\fR
+\fBautofetch \-\-structure title:os:kernel:uptime:memory\fR
 .RE
 .TP
 Generate a config file:
 .RS
-\fBfastfetch \-\-gen\-config\fR
+\fBautofetch \-\-gen\-config\fR
 .RE
 .TP
 Use a preset:
 .RS
-\fBfastfetch \-\-config neofetch\fR
+\fBautofetch \-\-config neofetch\fR
 .RE
 
 .SH "SEE ALSO"
 .BR neofetch (1)
 
 .SH BUGS
-Please report bugs to: \fIhttps://github.com/fastfetch\-cli/fastfetch/issues\fR
+Please report bugs to: \fIhttps://github.com/autofetch\-cli/autofetch/issues\fR
 
 .SH AUTHORS
-Fastfetch is developed by a team of contributors on GitHub.
-Visit \fIhttps://github.com/fastfetch-cli/fastfetch\fR for more information.
+Autofetch is developed by a team of contributors on GitHub.
+Visit \fIhttps://github.com/ash-luigi/autofetch\fR for more information.

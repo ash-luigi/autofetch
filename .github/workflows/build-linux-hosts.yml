@@ -11,7 +11,7 @@ on:
         type: string
     outputs:
       ffversion:
-        description: fastfetch version from linux host build
+        description: autofetch version from linux host build
         value: ${{ jobs.build.outputs.ffversion }}
 
 env:
@@ -63,32 +63,32 @@ jobs:
         uses: github/codeql-action/analyze@v4
 
       - name: list features
-        run: ./fastfetch --list-features
+        run: ./autofetch --list-features
 
-      - name: run fastfetch
-        run: time ./fastfetch -c presets/ci.jsonc --stat false
+      - name: run autofetch
+        run: time ./autofetch -c presets/ci.jsonc --stat false
 
-      - name: run fastfetch --format json
-        run: time ./fastfetch -c presets/ci.jsonc --format json
+      - name: run autofetch --format json
+        run: time ./autofetch -c presets/ci.jsonc --format json
 
       - name: run flashfetch
         run: time ./flashfetch
 
       - name: print dependencies
-        run: ldd fastfetch
+        run: ldd autofetch
 
       - name: run tests
         run: ctest --output-on-failure
 
-      - name: get fastfetch version
+      - name: get autofetch version
         id: ffversion
-        run: echo "ffversion=$(./fastfetch --version-raw)" >> $GITHUB_OUTPUT
+        run: echo "ffversion=$(./autofetch --version-raw)" >> $GITHUB_OUTPUT
 
       - name: polyfill glibc
         run: |
           wget https://github.com/CarterLi/polyfill-glibc/releases/download/v0.0.1/polyfill-glibc-${{ inputs.arch }} -O polyfill-glibc
           chmod +x polyfill-glibc
-          strip fastfetch && ./polyfill-glibc fastfetch --target-glibc=2.17
+          strip autofetch && ./polyfill-glibc autofetch --target-glibc=2.17
           strip flashfetch && ./polyfill-glibc flashfetch --target-glibc=2.17
           echo 'set(CPACK_PACKAGE_FILE_NAME "${CPACK_PACKAGE_FILE_NAME}-polyfilled")' >> CPackConfig.cmake
           echo 'set(CPACK_PACKAGE_RELOCATABLE OFF)' >> CPackConfig.cmake
@@ -99,5 +99,5 @@ jobs:
       - name: upload artifacts
         uses: actions/upload-artifact@v7
         with:
-          name: fastfetch-linux-${{ inputs.arch }}
-          path: ./fastfetch-*.*
+          name: autofetch-linux-${{ inputs.arch }}
+          path: ./autofetch-*.*

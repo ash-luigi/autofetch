@@ -93,7 +93,7 @@ static uint32_t getNixPackagesImpl(char* path) {
 
     FF_STRBUF_AUTO_DESTROY cacheDir = ffStrbufCreateCopy(&instance.state.platform.cacheDir);
     ffStrbufEnsureEndsWithC(&cacheDir, '/');
-    ffStrbufAppendS(&cacheDir, "fastfetch/packages/nix");
+    ffStrbufAppendS(&cacheDir, "autofetch/packages/nix");
     ffStrbufAppendS(&cacheDir, path);
 
     // Check the hash first to determine if we need to recompute the count

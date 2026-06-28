@@ -6,9 +6,9 @@ body:
   - type: markdown
     attributes:
       value: |
-        Tip: You can display a logo in fastfetch without adding it to fastfetch's official repo.
+        Tip: You can display a logo in autofetch without adding it to autofetch's official repo.
         For highly customized, personal logos, we recommend keeping them locally.
-        Please refer to https://github.com/fastfetch-cli/fastfetch/wiki/Migrate-Neofetch-Logo-To-Fastfetch
+        Please refer to https://github.com/ash-luigi/autofetch/wiki/Migrate-Neofetch-Logo-To-autofetch
   - type: textarea
     attributes:
       label: OS

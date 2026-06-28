@@ -64,7 +64,7 @@ const char* ffDetectDNS(FFDNSOptions* options, FFlist* results) {
     FF_DEBUG("Using SystemConfiguration framework for macOS");
 
     // Create a reference to the dynamic store
-    FF_CFTYPE_AUTO_RELEASE SCDynamicStoreRef store = SCDynamicStoreCreate(NULL, CFSTR("fastfetch"), NULL, NULL);
+    FF_CFTYPE_AUTO_RELEASE SCDynamicStoreRef store =     SCDynamicStoreCreate(NULL, CFSTR("autofetch"), NULL, NULL);
     if (store) {
         // Get the network global IPv4 and IPv6 configuration
         FF_CFTYPE_AUTO_RELEASE CFStringRef key = SCDynamicStoreKeyCreateNetworkGlobalEntity(NULL, kSCDynamicStoreDomainState, kSCEntNetDNS);

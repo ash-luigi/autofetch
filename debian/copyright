@@ -1,9 +1,9 @@
 Format: https://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
-Upstream-Name: fastfetch
-Source: https://github.com/fastfetch-cli/fastfetch
+Upstream-Name: autofetch
+Source: https://github.com/ash-luigi/autofetch
 
 Files: *
-Copyright: 2024 fastfetch-cli
+Copyright: 2024 Ash Luigi
 License: Expat
 
 Files: src/3rdparty/yyjson/*

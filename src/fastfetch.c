@@ -61,7 +61,7 @@ static void printCommandFormatHelp(const char* command) {
                 FF_STRBUF_AUTO_DESTROY variable = ffStrbufCreate();
                 printf("-- In config file: { \"type\": \"%s\", \"format\": \"{<format-variable>}\" }\n", type.chars);
                 printf("Sets the format string for %s output.\n", baseInfo->name);
-                puts("To see how a format string is constructed, take a look at https://github.com/fastfetch-cli/fastfetch/wiki/Format-String-Guide.");
+                puts("To see how a format string is constructed, take a look at https://github.com/ash-luigi/autofetch/wiki/Format-String-Guide.");
                 puts("The following variables are passed:");
 
                 uint32_t maxWidth = 20;
@@ -89,11 +89,11 @@ static void printCommandFormatHelp(const char* command) {
 
 FF_A_COLD
 static void printFullHelp() {
-    fputs("Fastfetch is a neofetch-like tool for fetching system information and displaying them in a pretty way\n\n", stdout);
+    fputs("Autofetch is a system information fetching tool with automatic logo detection and text art generation\n\n", stdout);
     if (!instance.config.display.pipe) {
-        fputs("\e[1;4mUsage:\e[m \e[1mfastfetch\e[m \e[3m<?options>\e[m\n\n", stdout);
+        fputs("\e[1;4mUsage:\e[m \e[1mautofetch\e[m \e[3m<?options>\e[m\n\n", stdout);
     } else {
-        fputs("Usage: fastfetch <?options>\n\n", stdout);
+        fputs("Usage: autofetch <?options>\n\n", stdout);
     }
 
     yyjson_doc* doc = yyjson_read(FASTFETCH_DATATEXT_JSON_HELP, strlen(FASTFETCH_DATATEXT_JSON_HELP), YYJSON_READ_NOFLAG);
@@ -191,7 +191,7 @@ Command flags are not case sensitive. E.g. `--print-logos` is equal to `--Print-
 If a value starts with a ?, it is optional. An optional boolean value defaults to true if not specified.\n\
 More detailed help messages for each options can be printed with `-h <option_without_dash_prefix>`\n\
 For detailed information on logo options, module configuration, and formatting, visit:\n\
-      https://github.com/fastfetch-cli/fastfetch/wiki/Configuration");
+      https://github.com/ash-luigi/autofetch/wiki/Configuration");
 }
 
 FF_A_COLD
@@ -321,7 +321,7 @@ static void printCommandHelp(const char* command) {
 FF_A_COLD
 static void listAvailablePresets(bool pretty) {
     FF_LIST_FOR_EACH (FFstrbuf, path, instance.state.platform.dataDirs) {
-        ffStrbufAppendS(path, "fastfetch/presets/");
+        ffStrbufAppendS(path, "autofetch/presets/");
         ffListFilesRecursively(path->chars, pretty);
     }
 
@@ -336,7 +336,7 @@ static void listAvailablePresets(bool pretty) {
 FF_A_COLD
 static void listAvailableLogos(void) {
     FF_LIST_FOR_EACH (FFstrbuf, path, instance.state.platform.dataDirs) {
-        ffStrbufAppendS(path, "fastfetch/logos/");
+        ffStrbufAppendS(path, "autofetch/logos/");
         ffListFilesRecursively(path->chars, true);
     }
 }
@@ -345,8 +345,8 @@ FF_A_COLD
 static void listConfigPaths(void) {
     FF_LIST_FOR_EACH (FFstrbuf, folder, instance.state.platform.configDirs) {
         bool exists = false;
-        uint32_t length = folder->length + (uint32_t) strlen("fastfetch") + 1 /* trailing slash */;
-        ffStrbufAppendS(folder, "fastfetch/config.jsonc");
+        uint32_t length = folder->length + (uint32_t) strlen("autofetch") + 1 /* trailing slash */;
+        ffStrbufAppendS(folder, "autofetch/config.jsonc");
         exists = ffPathExists(folder->chars, FF_PATHTYPE_FILE);
         ffStrbufSubstrBefore(folder, length);
         printf("%s%s\n", folder->chars, exists ? " (*)" : "");
@@ -356,7 +356,7 @@ static void listConfigPaths(void) {
 FF_A_COLD
 static void listDataPaths(void) {
     FF_LIST_FOR_EACH (FFstrbuf, folder, instance.state.platform.dataDirs) {
-        ffStrbufAppendS(folder, "fastfetch/");
+        ffStrbufAppendS(folder, "autofetch/");
         puts(folder->chars);
     }
 }
@@ -445,9 +445,9 @@ static void generateConfigFile(FFdata* data, bool force, const char* filePath, b
         }
 
         FFstrbuf* configDir = FF_LIST_FIRST(FFstrbuf, instance.state.platform.configDirs);
-        ffStrbufEnsureFixedLengthFree(&data->genConfigPath, configDir->length + strlen("fastfetch/config.jsonc"));
-        ffStrbufSet(&data->genConfigPath, configDir);
-        ffStrbufAppendS(&data->genConfigPath, "fastfetch/config.jsonc");
+        ffStrbufEnsureFixedLengthFree(&data->genConfigPath, configDir->length + strlen("autofetch/config.jsonc"));
+        ffStrbufAppend(&data->genConfigPath, configDir);
+        ffStrbufAppendS(&data->genConfigPath, "autofetch/config.jsonc");
     } else {
         ffStrbufSetS(&data->genConfigPath, filePath);
     }
@@ -509,7 +509,7 @@ static void optionParseConfigFile(FFdata* data, const char* key, const char* val
 
     FF_LIST_FOR_EACH (FFstrbuf, path, instance.state.platform.configDirs) {
         ffStrbufSet(&absolutePath, path);
-        ffStrbufAppendS(&absolutePath, "fastfetch/");
+        ffStrbufAppendS(&absolutePath, "autofetch/");
         ffStrbufAppendS(&absolutePath, value);
         if (needExtension) {
             ffStrbufAppendS(&absolutePath, ".jsonc");
@@ -524,7 +524,7 @@ static void optionParseConfigFile(FFdata* data, const char* key, const char* val
 
     FF_LIST_FOR_EACH (FFstrbuf, path, instance.state.platform.dataDirs) {
         ffStrbufSet(&absolutePath, path);
-        ffStrbufAppendS(&absolutePath, "fastfetch/presets/");
+        ffStrbufAppendS(&absolutePath, "autofetch/presets/");
         ffStrbufAppendS(&absolutePath, value);
         if (needExtension) {
             ffStrbufAppendS(&absolutePath, ".jsonc");
@@ -535,7 +535,7 @@ static void optionParseConfigFile(FFdata* data, const char* key, const char* val
         }
     }
 
-    // Try to load as a relative path with the directory of fastfetch binary, for Windows support
+    // Try to load as a relative path with the directory of autofetch binary, for Windows support
 
     if (instance.state.platform.exePath.length) {
         uint32_t lastSlash = ffStrbufLastIndexC(&instance.state.platform.exePath, '/') + 1;
@@ -709,14 +709,14 @@ static void parseConfigFiles(FFdata* data) {
         FF_LIST_FOR_EACH (FFstrbuf, dir, instance.state.platform.configDirs) {
             uint32_t dirLength = dir->length;
 
-            ffStrbufAppendS(dir, "fastfetch/config.jsonc");
+            ffStrbufAppendS(dir, "autofetch/config.jsonc");
             bool success = parseJsoncFile(data, dir->chars, YYJSON_READ_ALLOW_COMMENTS | YYJSON_READ_ALLOW_TRAILING_COMMAS);
             ffStrbufSubstrBefore(dir, dirLength);
             if (success) {
                 return;
             }
 
-            ffStrbufAppendS(dir, "fastfetch/config.json5");
+            ffStrbufAppendS(dir, "autofetch/config.json5");
             success = parseJsoncFile(data, dir->chars, YYJSON_READ_JSON5);
             ffStrbufSubstrBefore(dir, dirLength);
             if (success) {
@@ -816,7 +816,7 @@ static void writeConfigFile(FFdata* data) {
     yyjson_mut_doc* doc = data->resultDoc;
     yyjson_mut_val* root = yyjson_mut_obj(doc);
     yyjson_mut_doc_set_root(doc, root);
-    yyjson_mut_obj_add_str(doc, root, "$schema", "https://github.com/fastfetch-cli/fastfetch/raw/master/doc/json_schema.json");
+    yyjson_mut_obj_add_str(doc, root, "$schema", "https://github.com/ash-luigi/autofetch/raw/main/doc/json_schema.json");
 
     if (data->docType == FF_RESULT_DOC_TYPE_CONFIG_FULL) {
         ffOptionsGenerateLogoJsonConfig(data, &instance.config.logo);
@@ -837,7 +837,7 @@ static void writeConfigFile(FFdata* data) {
         if (ffWriteFileData(filename->chars, len, str)) {
             printf("✓ Configuration file generated: `%s`\n"
                    "* Tip: Use a JSON schema-aware editor for better editing experience\n"
-                   "* Documentation: https://github.com/fastfetch-cli/fastfetch/wiki/Configuration\n",
+                   "* Documentation: https://github.com/ash-luigi/autofetch/wiki/Configuration\n",
                 filename->chars);
         } else {
             printf("Error: failed to write file in `%s`\n", filename->chars);
@@ -850,7 +850,7 @@ int main(int argc, char** argv) {
     ffInitInstance();
     atexit(ffDestroyInstance);
 
-    // Data stores things only needed for the configuration of fastfetch
+    // Data stores things only needed for the configuration of autofetch
     FFdata data = {
         .structure = ffStrbufCreate(),
         .structureDisabled = ffStrbufCreate(),

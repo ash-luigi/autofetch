@@ -1,5 +1,5 @@
 extern "C" {
-#include "fastfetch.h"
+#include "Autofetch.h"
 #include "wmtheme.h"
 }
 

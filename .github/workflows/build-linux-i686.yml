@@ -43,22 +43,22 @@ jobs:
         run: cmake --build . --target package --verbose -j4
 
       - name: check deb package
-        run: dpkg -I fastfetch-*.deb
+        run: dpkg -I autofetch-*.deb
 
       - name: list features
-        run: ./fastfetch --list-features
+        run: ./autofetch --list-features
 
-      - name: run fastfetch
-        run: time ./fastfetch -c presets/ci.jsonc --stat false
+      - name: run autofetch
+        run: time ./autofetch -c presets/ci.jsonc --stat false
 
-      - name: run fastfetch --format json
-        run: time ./fastfetch -c presets/ci.jsonc --format json
+      - name: run autofetch --format json
+        run: time ./autofetch -c presets/ci.jsonc --format json
 
       - name: run flashfetch
         run: time ./flashfetch
 
       - name: print dependencies
-        run: ldd fastfetch
+        run: ldd autofetch
 
       - name: run tests
         run: ctest --output-on-failure
@@ -66,5 +66,5 @@ jobs:
       - name: upload artifacts
         uses: actions/upload-artifact@v7
         with:
-          name: fastfetch-linux-i686
-          path: ./fastfetch-*.*
+          name: autofetch-linux-i686
+          path: ./autofetch-*.*

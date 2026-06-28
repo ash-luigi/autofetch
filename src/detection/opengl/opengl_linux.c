@@ -163,7 +163,7 @@ const char* ffDetectOpenGL(FFOpenGLOptions* options, FFOpenGLResult* result) {
     #ifdef FF_HAVE_GLX
         return detectByGlx(result);
     #else
-        return "fastfetch was compiled without glx support";
+        return "Autofetch was compiled without glx support";
     #endif
     }
 
@@ -172,7 +172,7 @@ const char* ffDetectOpenGL(FFOpenGLOptions* options, FFOpenGLResult* result) {
         const char* ffOpenGLDetectByEGL(FFOpenGLResult * result);
         return ffOpenGLDetectByEGL(result);
     #else
-        return "fastfetch was compiled without egl support";
+        return "Autofetch was compiled without egl support";
     #endif
     }
 
@@ -194,7 +194,7 @@ const char* ffDetectOpenGL(FFOpenGLOptions* options, FFOpenGLResult* result) {
 #else
 
     FF_UNUSED(options, result);
-    return "Fastfetch was built without gl support.";
+    return "Autofetch was built without gl support.";
 
 #endif // FF_HAVE_GL
 }

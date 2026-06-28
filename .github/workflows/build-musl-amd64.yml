@@ -32,16 +32,16 @@ jobs:
 
       - name: run
         run: |
-            ./fastfetch --list-features
-            time ./fastfetch -c presets/ci.jsonc --stat false
-            time ./fastfetch -c presets/ci.jsonc --format json
+            ./autofetch --list-features
+            time ./autofetch -c presets/ci.jsonc --stat false
+            time ./autofetch -c presets/ci.jsonc --format json
             time ./flashfetch
-            ldd fastfetch
+            ldd autofetch
             ctest --output-on-failure
         shell: alpine.sh {0}
 
       - name: upload artifacts
         uses: actions/upload-artifact@v7
         with:
-          name: fastfetch-musl-amd64
-          path: ./fastfetch-*.*
+          name: autofetch-musl-amd64
+          path: ./autofetch-*.*

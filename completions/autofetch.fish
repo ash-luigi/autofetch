@@ -1,4 +1,4 @@
-if not type -q fastfetch
+if not type -q autofetch
     exit
 end
 
@@ -7,14 +7,14 @@ if test $status -ne 0
     exit
 end
 
-complete -c fastfetch -f
+complete -c autofetch -f
 
-function __fastfetch_complete_bool
+function __autofetch_complete_bool
     echo -e "true\tBool"
     echo -e "false\tBool"
 end
 
-function __fastfetch_complete_color
+function __autofetch_complete_color
     echo -e "black\tColor"
     echo -e "red\tColor"
     echo -e "green\tColor"
@@ -26,8 +26,8 @@ function __fastfetch_complete_color
     echo -e "default\tColor"
 end
 
-function __fastfetch_complete_command
-    for line in (fastfetch --list-modules autocompletion)
+function __autofetch_complete_command
+    for line in (autofetch --list-modules autocompletion)
         set -l pair (string split -m 2 : $line)
         set -l module (string lower $pair[1])
 
@@ -37,23 +37,23 @@ function __fastfetch_complete_command
     echo -e "color\tColor format"
 end
 
-function __fastfetch_complete_config
-    for line in (fastfetch --list-presets autocompletion)
+function __autofetch_complete_config
+    for line in (autofetch --list-presets autocompletion)
         echo -e "$line\tPreset"
     end
     echo -e "none\tDisable loading config file"
 end
 
-function __fastfetch_complete_logo
-    for line in (fastfetch --list-logos autocompletion)
+function __autofetch_complete_logo
+    for line in (autofetch --list-logos autocompletion)
         echo -e "$line\tBuiltin logo"
     end
     echo -e "none\tDon't print logo"
     echo -e "small\tPrint small ascii logo if available"
 end
 
-function __fastfetch_complete_structure
-    for line in (fastfetch --list-modules autocompletion)
+function __autofetch_complete_structure
+    for line in (autofetch --list-modules autocompletion)
         set -l pair (string split -m 2 : $line)
         echo -e "$pair[1]\t$pair[2]"
     end
@@ -64,39 +64,39 @@ import json, subprocess, sys
 
 
 def main():
-    data: dict[str, list[dict]] = json.loads(subprocess.check_output(["fastfetch", "--help-raw"]))
+    data: dict[str, list[dict]] = json.loads(subprocess.check_output(["autofetch", "--help-raw"]))
 
     for key in data:
         for flag in data[key]:
             if flag["long"] == "logo-color-[1-9]":
                 for i in range(1, 10):
-                    print(f"""complete -c fastfetch -d "{flag["desc"]}" -l "logo-color-{i}" -x -a "(__fastfetch_complete_color)" """)
+                    print(f"""complete -c autofetch -d "{flag["desc"]}" -l "logo-color-{i}" -x -a "(__autofetch_complete_color)" """)
                 continue
 
             if flag.get("pseudo", False):
                 continue
 
-            command_prefix = f"""complete -c fastfetch -d "{flag["desc"]}" -l "{flag["long"]}\""""
+            command_prefix = f"""complete -c autofetch -d "{flag["desc"]}" -l "{flag["long"]}\""""
             if "short" in flag:
                 command_prefix += f""" -o {flag["short"]}"""
 
             if "arg" in flag:
                 type: str = flag["arg"]["type"]
                 if type == "bool":
-                    print(f"{command_prefix} -x -a \"(__fastfetch_complete_bool)\"")
+                    print(f"{command_prefix} -x -a \"(__autofetch_complete_bool)\"")
                 elif type == "color":
-                    print(f"{command_prefix} -x -a \"(__fastfetch_complete_color)\"")
+                    print(f"{command_prefix} -x -a \"(__autofetch_complete_color)\"")
                 elif type == "command":
-                    print(f"{command_prefix} -x -a \"(__fastfetch_complete_command)\"")
+                    print(f"{command_prefix} -x -a \"(__autofetch_complete_command)\"")
                 elif type == "config":
-                    print(f"{command_prefix} -x -a \"(__fastfetch_complete_config)\"")
+                    print(f"{command_prefix} -x -a \"(__autofetch_complete_config)\"")
                 elif type == "enum":
                     temp: str = " ".join(flag["arg"]["enum"])
                     print(f"{command_prefix} -x -a \"{temp}\"")
                 elif type == "logo":
-                    print(f"{command_prefix} -x -a \"(__fastfetch_complete_logo)\"")
+                    print(f"{command_prefix} -x -a \"(__autofetch_complete_logo)\"")
                 elif type == "structure":
-                    print(f"{command_prefix} -x -a \"(__fish_complete_list : __fastfetch_complete_structure)\"")
+                    print(f"{command_prefix} -x -a \"(__fish_complete_list : __autofetch_complete_structure)\"")
                 elif type == "path":
                     print(f"{command_prefix} -r -F")
                 else:

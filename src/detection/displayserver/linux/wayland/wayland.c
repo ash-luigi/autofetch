@@ -342,7 +342,7 @@ const char* ffdsConnectWayland(FFDisplayServerResult* result) {
 #else
 
 const char* ffdsConnectWayland(FF_A_UNUSED FFDisplayServerResult* result) {
-    return "Fastfetch was compiled without Wayland support";
+    return "Autofetch was compiled without Wayland support";
 }
 
 #endif

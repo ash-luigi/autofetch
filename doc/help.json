@@ -12,7 +12,7 @@
         {
             "short": "v",
             "long": "version",
-            "desc": "Show the full Fastfetch version"
+            "desc": "Show the full Autofetch version"
         },
         {
             "long": "version-raw",
@@ -41,7 +41,7 @@
         },
         {
             "long": "list-features",
-            "desc": "List the supported features that fastfetch was compiled with",
+            "desc": "List the supported features that autofetch was compiled with",
             "remark": "Mainly for development"
         },
         {
@@ -77,7 +77,7 @@
         },
         {
             "long": "dynamic-interval",
-            "desc": "Keep Fastfetch running and refresh the output every <num> milliseconds",
+            "desc": "Keep Autofetch running and refresh the output every <num> milliseconds",
             "remark": "Set to 0 (default) to disable this behavior; does not work with --json",
             "arg": {
                 "type": "num",
@@ -90,7 +90,7 @@
             "short": "c",
             "long": "config",
             "desc": "Specify the config file or preset to load",
-            "remark": "The file is searched in the order shown by \"fastfetch --list-config-paths\". Use \"-\" to read config from stdin, or \"none\" to disable further config loading. See also https://github.com/fastfetch-cli/fastfetch/wiki/Configuration for details",
+            "remark": "The file is searched in the order shown by \"autofetch --list-config-paths\". Use \"-\" to read config from stdin, or \"none\" to disable further config loading. See also https://github.com/autofetch-cli/autofetch/wiki/Configuration for details",
             "arg": {
                 "type": "config"
             }
@@ -98,7 +98,7 @@
         {
             "long": "gen-config",
             "desc": "Generate a minimal config file at the specified path",
-            "remark": "Defaults to \"~/.config/fastfetch/config.jsonc\". Prints the generated config if <path> is \"-\"",
+            "remark": "Defaults to \"~/.config/autofetch/config.jsonc\". Prints the generated config if <path> is \"-\"",
             "arg": {
                 "type": "path",
                 "optional": true
@@ -107,7 +107,7 @@
         {
             "long": "gen-config-full",
             "desc": "Generate a full config file with all optional settings at the specified path",
-            "remark": "Defaults to \"~/.config/fastfetch/config.jsonc\". Prints the generated config if <path> is \"-\"",
+            "remark": "Defaults to \"~/.config/autofetch/config.jsonc\". Prints the generated config if <path> is \"-\"",
             "arg": {
                 "type": "path",
                 "optional": true
@@ -116,7 +116,7 @@
         {
             "long": "gen-config-force",
             "desc": "Generate a config file at the specified path, overwriting any existing file",
-            "remark": "Defaults to \"~/.config/fastfetch/config.jsonc\"",
+            "remark": "Defaults to \"~/.config/autofetch/config.jsonc\"",
             "arg": {
                 "type": "path",
                 "optional": true
@@ -184,7 +184,7 @@
             "short": "l",
             "long": "logo",
             "desc": "Set the logo source. Use \"none\" to disable logo output",
-            "remark": "Use either a built-in logo name or a path to an image file. See also https://github.com/fastfetch-cli/fastfetch/wiki/Logo-options",
+            "remark": "Use either a built-in logo name or a path to an image file. See also https://github.com/autofetch-cli/autofetch/wiki/Logo-options",
             "arg": {
                 "type": "logo"
             }
@@ -192,7 +192,7 @@
         {
             "long": "logo-type",
             "desc": "Set the type of logo specified by \"--logo\"",
-            "remark": "See also https://github.com/fastfetch-cli/fastfetch/wiki/Logo-options",
+            "remark": "See also https://github.com/autofetch-cli/autofetch/wiki/Logo-options",
             "arg": {
                 "type": "enum",
                 "enum": {
@@ -462,10 +462,10 @@
             "short": "s",
             "long": "structure",
             "desc": "Set the structure of the fetch",
-            "remark": "Must be a colon-separated list of module keys. Use \"fastfetch --list-modules\" to see available options",
+            "remark": "Must be a colon-separated list of module keys. Use \"autofetch --list-modules\" to see available options",
             "arg": {
                 "type": "structure",
-                "default": "\"fastfetch --print-structure\""
+                "default": "\"autofetch --print-structure\""
             }
         },
         {
@@ -500,7 +500,7 @@
             "desc": "Set the color of both keys and title",
             "remark": [
                 "Shortcut for \"--color-keys <color>\" and \"--color-title <color>\"",
-                "For color syntax, see <https://github.com/fastfetch-cli/fastfetch/wiki/Color-Format-Specification>"
+                "For color syntax, see <https://github.com/autofetch-cli/autofetch/wiki/Color-Format-Specification>"
             ],
             "arg": {
                 "type": "color"

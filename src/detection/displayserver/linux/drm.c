@@ -447,5 +447,5 @@ const char* ffdsConnectDrm(FF_A_UNUSED FFDisplayServerResult* result) {
     return drmParseSysfs(result);
 #endif
 
-    return "fastfetch was compiled without drm support";
+    return "Autofetch was compiled without drm support";
 }

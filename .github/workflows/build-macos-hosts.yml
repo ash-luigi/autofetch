@@ -35,19 +35,19 @@ jobs:
         run: cmake --build . --target package --verbose -j4
 
       - name: list features
-        run: ./fastfetch --list-features
+        run: ./autofetch --list-features
 
-      - name: run fastfetch
-        run: time ./fastfetch -c presets/ci.jsonc --structure-disabled vulkan --stat false
+      - name: run autofetch
+        run: time ./autofetch -c presets/ci.jsonc --structure-disabled vulkan --stat false
 
-      - name: run fastfetch --format json
-        run: time ./fastfetch -c presets/ci.jsonc --structure-disabled vulkan --format json
+      - name: run autofetch --format json
+        run: time ./autofetch -c presets/ci.jsonc --structure-disabled vulkan --format json
 
       - name: run flashfetch
         run: time ./flashfetch
 
       - name: print dependencies
-        run: otool -L fastfetch
+        run: otool -L autofetch
 
       - name: run tests
         run: ctest --output-on-failure
@@ -55,5 +55,5 @@ jobs:
       - name: upload artifacts
         uses: actions/upload-artifact@v7
         with:
-          name: fastfetch-macos-${{ inputs.arch }}
-          path: ./fastfetch-*.*
+          name: autofetch-macos-${{ inputs.arch }}
+          path: ./autofetch-*.*

@@ -1,4 +1,4 @@
-<!-- Fastfetch Logo -->
+<!-- Autofetch Logo -->
 <svg width="400" height="400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400">
   <!-- Terminal border -->
   <rect x="0" y="0" width="400" height="400" rx="15" ry="15" fill="#282c34" stroke="#3498db"
@@ -8,7 +8,7 @@
   <g>
     <!-- Background -->
     <path d="M15,0 h370 a15,15 0 0 1 15,15 v25 h-400 v-25 a15,15 0 0 1 15,-15 z" fill="#3498db" opacity="0.2" />
-    <text x="190" y="28" font-family="Arial, sans-serif" font-size="20" font-weight="bold" fill="#ecf0f1">FASTFETCH</text>
+    <text x="190" y="28" font-family="Arial, sans-serif" font-size="20" font-weight="bold" fill="#ecf0f1">AUTOFETCH</text>
     <!-- Close btn -->
     <circle cx="25" cy="20" r="7" fill="#e74c3c" />
     <!-- Minimize btn -->

@@ -89,6 +89,6 @@ const char* ffDetectCamera(FFlist* result) {
     return NULL;
 #else
     FF_UNUSED(result);
-    return "Fastfetch was compiled without <linux/videodev2.h>";
+    return "Autofetch was compiled without <linux/videodev2.h>";
 #endif
 }

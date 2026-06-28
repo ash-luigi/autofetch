@@ -411,7 +411,7 @@ static const char* getMedia(FFMediaResult* result, bool saveCover) {
 #else
 static const char* getMedia(FFMediaResult* media, bool saveCover) {
     FF_UNUSED(media, saveCover);
-    return "Fastfetch is not compiled with WinRT support";
+    return "Autofetch is not compiled with WinRT support";
 }
 #endif // FF_HAVE_WINRT
 

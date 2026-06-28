@@ -1,6 +1,6 @@
-#compdef fastfetch
+#compdef autofetch
 
-function _fastfetch() {
+function _autofetch() {
 
   whence python3 &> /dev/null
   if [ $? -ne 0 ]
@@ -19,7 +19,7 @@ import sys
 
 def main():
     data: dict[str, list[dict]] = json.loads(
-        subprocess.check_output(["fastfetch", "--help-raw"])
+        subprocess.check_output(["autofetch", "--help-raw"])
     )
 
     for key in data:
@@ -84,24 +84,24 @@ EOF
       _describe 'color' colors
       ;;
     modules)
-      local -a modules=("${(f)$(fastfetch --list-modules autocompletion)}")
+      local -a modules=("${(f)$(autofetch --list-modules autocompletion)}")
       modules=(${(L)^modules[@]%%:*}-format format color)
       _describe 'module' modules
       ;;
     presets)
       local -a presets=(
-        "${(f)$(fastfetch --list-presets autocompletion)}"
+        "${(f)$(autofetch --list-presets autocompletion)}"
         "none:Disable loading config file"
       )
       _describe 'preset' presets || _files
       ;;
     structures)
-      local -a structures=("${(f)$(fastfetch --list-modules autocompletion)}")
+      local -a structures=("${(f)$(autofetch --list-modules autocompletion)}")
       _describe 'structure' structures
       ;;
     logos)
       local -a logos=(
-        "${(f)$(fastfetch --list-logos autocompletion)}"
+        "${(f)$(autofetch --list-logos autocompletion)}"
         "none:Don't print logo"
         "small:Print small ascii logo if available"
       )
@@ -110,4 +110,4 @@ EOF
   esac
 }
 
-_fastfetch "$@"
+_autofetch "$@"

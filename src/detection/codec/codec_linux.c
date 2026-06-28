@@ -466,7 +466,7 @@ const char* ffDetectCodecNative(FFCodecOptions* options, FFlist* result /* list 
 
 const char* ffDetectCodecNative(FFCodecOptions* options, FFlist* result /* list of FFCodecResult */) {
     FF_UNUSED(options, result);
-    return "Fastfetch was built without VA-API / VDPAU headers";
+    return "Autofetch was built without VA-API / VDPAU headers";
 }
 
 #endif

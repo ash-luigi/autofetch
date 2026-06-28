@@ -21,7 +21,7 @@ FFLogoImageResult ffLogoPrintImageIM7(FFLogoRequestData* requestData) {
                                                                      .library = imageMagick,
                                                                  });
 
-    imageMagick = NULL; // leak imageMagick to prevent fastfetch from crashing #552
+    imageMagick = NULL; // leak imageMagick to prevent autofetch from crashing #552
     return result;
 }
 

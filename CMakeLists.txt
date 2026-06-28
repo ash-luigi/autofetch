@@ -1,10 +1,10 @@
 cmake_minimum_required(VERSION 3.12.0) # target_link_libraries with OBJECT libs & project homepage url
 
-project(fastfetch
+project(autofetch
     VERSION 2.65.1
     LANGUAGES C
-    DESCRIPTION "Fast neofetch-like system information tool"
-    HOMEPAGE_URL "https://github.com/fastfetch-cli/fastfetch"
+    DESCRIPTION "Automatic system information fetching tool"
+    HOMEPAGE_URL "https://github.com/ash-luigi/autofetch"
 )
 
 set(PROJECT_LICENSE "MIT license")
@@ -103,16 +103,16 @@ cmake_dependent_option(ENABLE_ELF "Enable libelf" ON "LINUX OR ANDROID OR Dragon
 cmake_dependent_option(ENABLE_THREADS "Enable multithreading" ON "Threads_FOUND" OFF)
 
 option(ENABLE_ZLIB "Enable zlib" ON)
-option(ENABLE_SYSTEM_YYJSON "Use system provided (instead of fastfetch embedded) yyjson library" OFF)
-option(ENABLE_ASAN "Build fastfetch with ASAN (address sanitizer)" OFF)
+option(ENABLE_SYSTEM_YYJSON "Use system provided (instead of embedded) yyjson library" OFF)
+option(ENABLE_ASAN "Build autofetch with ASAN (address sanitizer)" OFF)
 option(ENABLE_LTO "Enable link-time optimization in release mode if supported" ON)
 option(BUILD_FLASHFETCH "Build flashfetch" ON) # Also build the flashfetch binary
 option(BUILD_TESTS "Build tests" OFF) # Also create test executables
 option(SET_TWEAK "Add tweak to project version" ON) # This is set to off by github actions for release builds
 option(IS_MUSL "Build with musl libc" OFF) # Used by Github Actions
 option(INSTALL_LICENSE "Install license into /usr/share/licenses" ON)
-option(ENABLE_EMBEDDED_PCIIDS "Embed pci.ids into fastfetch, requires `python`" OFF)
-option(ENABLE_EMBEDDED_AMDGPUIDS "Embed amdgpu.ids into fastfetch, requires `python`" OFF)
+option(ENABLE_EMBEDDED_PCIIDS "Embed pci.ids into autofetch, requires `python`" OFF)
+option(ENABLE_EMBEDDED_AMDGPUIDS "Embed amdgpu.ids into autofetch, requires `python`" OFF)
 option(ENABLE_WORDEXP "Enable using of wordexp(3) if available, instead of glob(3)" ON)
 option(ENABLE_LUA "Enable lua scripting for format strings" ON)
 option(ENABLE_QUICKJS "Enable quickjs scripting for format strings" ON)
@@ -135,7 +135,7 @@ foreach(FF_MODULE_DIR ${FF_MODULE_DIRS})
 endforeach()
 
 set(BINARY_LINK_TYPE_OPTIONS dlopen dynamic static)
-set(BINARY_LINK_TYPE dlopen CACHE STRING "How to link fastfetch")
+set(BINARY_LINK_TYPE dlopen CACHE STRING "How to link autofetch")
 set_property(CACHE BINARY_LINK_TYPE PROPERTY STRINGS ${BINARY_LINK_TYPE_OPTIONS})
 if(NOT BINARY_LINK_TYPE IN_LIST BINARY_LINK_TYPE_OPTIONS)
     message(FATAL_ERROR "BINARY_LINK_TYPE must be one of ${BINARY_LINK_TYPE_OPTIONS}")
@@ -365,17 +365,17 @@ if(ENABLE_EMBEDDED_AMDGPUIDS AND NOT EXISTS "${PROJECT_BINARY_DIR}/fastfetch_amd
 endif()
 
 if(Python_FOUND)
-    message(STATUS "Generating 'fastfetch.1'")
+    message(STATUS "Generating 'autofetch.1'")
     execute_process(COMMAND ${Python_EXECUTABLE} "${CMAKE_CURRENT_SOURCE_DIR}/scripts/gen-man.py"
-                    OUTPUT_FILE "${PROJECT_BINARY_DIR}/fastfetch.1"
+                    OUTPUT_FILE "${PROJECT_BINARY_DIR}/autofetch.1"
                     RESULT_VARIABLE PYTHON_MANPAGE_RETCODE)
         if(NOT PYTHON_MANPAGE_RETCODE EQUAL 0)
-            message(FATAL_ERROR "Failed to generate 'fastfetch.1'")
+            message(FATAL_ERROR "Failed to generate 'autofetch.1'")
         endif()
 else()
-    message(WARNING "Python3 is not found, use basic 'fastfetch.1.in' instead")
+    message(WARNING "Python3 is not found, use basic 'autofetch.1.in' instead")
     string(TIMESTAMP FASTFETCH_BUILD_DATE "%d %B %Y" UTC)
-    configure_file(doc/fastfetch.1.in fastfetch.1 @ONLY)
+    configure_file(doc/autofetch.1.in autofetch.1 @ONLY)
 endif()
 
 fastfetch_encode_c_string("${DATATEXT_JSON_HELP}" DATATEXT_JSON_HELP)
@@ -2042,33 +2042,33 @@ endif()
 # Executable targets #
 ######################
 
-add_executable(fastfetch
+add_executable(autofetch
     src/fastfetch.c
 )
-target_compile_definitions(fastfetch
-    PRIVATE FASTFETCH_TARGET_BINARY_NAME=fastfetch
+target_compile_definitions(autofetch
+    PRIVATE FASTFETCH_TARGET_BINARY_NAME=autofetch
 )
-target_link_libraries(fastfetch
+target_link_libraries(autofetch
     PRIVATE libfastfetch
 )
 
-# Prevent fastfetch from linking to libstdc++
+# Prevent autofetch from linking to libstdc++
 set(CMAKE_CXX_IMPLICIT_LINK_LIBRARIES "")
 set(CMAKE_CXX_IMPLICIT_LINK_DIRECTORIES "")
-set_target_properties(fastfetch PROPERTIES LINKER_LANGUAGE C)
+set_target_properties(autofetch PROPERTIES LINKER_LANGUAGE C)
 
 if(WIN32)
-    target_sources(fastfetch
+    target_sources(autofetch
         PRIVATE src/common/windows/version.rc
     )
 elseif(APPLE)
-    target_link_options(fastfetch
+    target_link_options(autofetch
         PRIVATE LINKER:-sectcreate,__TEXT,__info_plist,Info.plist
     )
 endif()
 
 if(BINARY_LINK_TYPE STREQUAL "static")
-    target_link_options(fastfetch PRIVATE "-static")
+    target_link_options(autofetch PRIVATE "-static")
 endif()
 
 # Apply all above parameters to flashfetch if it is built
@@ -2163,7 +2163,7 @@ endif()
 include(GNUInstallDirs)
 
 install(
-    TARGETS fastfetch
+    TARGETS autofetch
     DESTINATION "${CMAKE_INSTALL_BINDIR}"
 )
 
@@ -2205,7 +2205,7 @@ if(INSTALL_LICENSE)
 endif()
 
 install(
-    FILES "${PROJECT_BINARY_DIR}/fastfetch.1"
+    FILES "${PROJECT_BINARY_DIR}/autofetch.1"
     DESTINATION "${CMAKE_INSTALL_MANDIR}/man1"
 )
 
@@ -2262,8 +2262,8 @@ set(CPACK_SET_DESTDIR ON)
 
 set(CPACK_PACKAGE_CONTACT "Carter Li <zhangsongcui@live.cn>")
 set(CPACK_PACKAGE_DESCRIPTION "\
-fastfetch is a neofetch-like tool for fetching system information and displaying them in a pretty way. \
-It is written mostly in C to achieve much better performance.\
+autofetch is a system information fetching tool with automatic logo detection and text art generation. \
+Forked from fastfetch.\
 ")
 
 include(CPack)

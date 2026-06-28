@@ -198,7 +198,7 @@ const char* ffGPUDetectByDrmBSD(const FFGPUOptions* options, FFlist* gpus) {
 
 const char* ffGPUDetectByDrmBSD(const FFGPUOptions* options, FFlist* gpus) {
     FF_UNUSED(options, gpus);
-    return "Fastfetch was built without libdrm support";
+    return "Autofetch was built without libdrm support";
 }
 
 #endif // __FreeBSD__ || __OpenBSD__

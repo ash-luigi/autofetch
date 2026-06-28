@@ -283,6 +283,6 @@ void ffDetectMediaImpl(FFMediaResult* media, bool saveCover) {
     const char* error = getMedia(media);
     ffStrbufAppendS(&media->error, error);
 #else
-    ffStrbufAppendS(&media->error, "Fastfetch was compiled without DBus support");
+    ffStrbufAppendS(&media->error, "Autofetch was compiled without DBus support");
 #endif
 }

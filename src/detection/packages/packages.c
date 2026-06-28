@@ -56,7 +56,7 @@ bool ffPackagesReadCache(FFstrbuf* cacheDir, FFstrbuf* cacheContent, const char*
 
     ffStrbufSet(cacheDir, &instance.state.platform.cacheDir);
     ffStrbufEnsureEndsWithC(cacheDir, '/');
-    ffStrbufAppendF(cacheDir, "fastfetch/packages/%s.txt", packageId);
+    ffStrbufAppendF(cacheDir, "autofetch/packages/%s.txt", packageId);
 
     if (ffReadFileBuffer(cacheDir->chars, cacheContent)) {
         uint64_t mtime_cached;

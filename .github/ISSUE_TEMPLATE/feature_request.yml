@@ -6,7 +6,7 @@ body:
   - type: markdown
     attributes:
       value: |
-        Fastfetch is a system information tool. We only accept hardware or system level software feature requests.
+        autofetch is a system information tool. We only accept hardware or system level software feature requests.
         For most personal uses, I recommend using `Command` module to detect it yourself, which can be used to grab output from a custom shell script:
 
         ```jsonc

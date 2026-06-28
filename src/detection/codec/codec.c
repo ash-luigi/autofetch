@@ -6,7 +6,7 @@ const char* ffDetectCodec(FFCodecOptions* options, FFlist* result /*list of FFCo
         return ffDetectCodecVulkan(options, result);
 #else
         FF_UNUSED(options, result);
-        return "Fastfetch was built without Vulkan support";
+        return "Autofetch was built without Vulkan support";
 #endif
     }
 

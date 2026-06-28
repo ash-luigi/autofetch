@@ -914,7 +914,7 @@ static bool printImageIfExistsSlowPath(FFLogoType type, bool printError) {
 
     ffStrbufInit(&requestData.cacheDir);
     ffStrbufAppend(&requestData.cacheDir, &instance.state.platform.cacheDir);
-    ffStrbufAppendS(&requestData.cacheDir, "fastfetch/images");
+    ffStrbufAppendS(&requestData.cacheDir, "autofetch/images");
 
     ffStrbufEnsureFree(&requestData.cacheDir, PATH_MAX);
     char* filePath = requestData.cacheDir.chars + requestData.cacheDir.length;

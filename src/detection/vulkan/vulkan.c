@@ -322,7 +322,7 @@ FFVulkanResult* ffDetectVulkan(void) {
             FF_DEBUG("Vulkan detection returned error: %s", result.error);
         }
 #else
-        result.error = "fastfetch was compiled without vulkan support";
+        result.error = "Autofetch was compiled without vulkan support";
         FF_DEBUG("Vulkan support is disabled at compile time");
 #endif
     } else {

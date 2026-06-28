@@ -100,7 +100,7 @@ const char* ffDetectCodecVulkan(FFCodecOptions* options, FFlist* result /*list o
                                               .sType = VK_STRUCTURE_TYPE_APPLICATION_INFO,
                                               .pApplicationName = FASTFETCH_PROJECT_NAME,
                                               .applicationVersion = projectVersion,
-                                              .pEngineName = "fastfetch-codec-vulkan",
+                                              .pEngineName = "autofetch-codec-vulkan",
                                               .engineVersion = projectVersion,
                                               .apiVersion = apiVersion,
                                           },

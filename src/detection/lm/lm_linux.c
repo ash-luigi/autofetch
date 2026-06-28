@@ -82,7 +82,7 @@ static const char* getSddmVersion(FFstrbuf* version) {
 }
 #else
 static const char* getSddmVersion(FF_A_UNUSED FFstrbuf* version) {
-    return "Fastfetch is built without libz support";
+    return "Autofetch is built without libz support";
 }
 #endif
 

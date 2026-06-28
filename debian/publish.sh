@@ -9,7 +9,7 @@ command -v dput >/dev/null 2>&1 || { echo "dput not found." >&2; exit 1; }
 SCRIPT_DIR="$(cd -- "$(dirname "${BASH_SOURCE[0]}")" >/dev/null 2>&1 && pwd)"
 ROOT_DIR="$(cd -- "$SCRIPT_DIR/.." >/dev/null 2>&1 && pwd)"
 OUT_DIR="$(dirname "$ROOT_DIR")"
-PPA="ppa:zhangsongcui3371/fastfetch"
+PPA="ppa:ash-luigi/autofetch"
 CODENAMES=( jammy noble plucky questing resolute stonking )
 DRY_RUN=0
 
@@ -57,7 +57,7 @@ for codename in "${CODENAMES[@]}"; do
 
   ( cd "$ROOT_DIR" && debuild -S -i -I )
 
-  changes=( "$OUT_DIR"/fastfetch_*~${codename}_source.changes )
+  changes=( "$OUT_DIR"/autofetch_*~${codename}_source.changes )
   if [[ ${#changes[@]} -ne 1 ]]; then
     echo "Unable to uniquely identify .changes for '$codename' in: $OUT_DIR" >&2
     printf 'Found:\n'; printf '  %s\n' "${changes[@]}" >&2 || true
@@ -70,7 +70,7 @@ for codename in "${CODENAMES[@]}"; do
     dput "$PPA" "${changes[0]}"
   fi
 
-  rm -f "$OUT_DIR"/fastfetch_*~${codename}_source.{changes,dsc,tar.*}
+  rm -f "$OUT_DIR"/autofetch_*~${codename}_source.{changes,dsc,tar.*}
 
   echo "<== Done: $codename"
 done

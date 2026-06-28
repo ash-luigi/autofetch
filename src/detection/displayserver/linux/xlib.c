@@ -360,7 +360,7 @@ const char* ffdsConnectXrandr(FFDisplayServerResult* result) {
 const char* ffdsConnectXrandr(FFDisplayServerResult* result) {
     // Do nothing here. There are more x11 implementations to come.
     FF_UNUSED(result);
-    return "Fastfetch was compiled without libXrandr support";
+    return "Autofetch was compiled without libXrandr support";
 }
 
 #endif // FF_HAVE_XRANDR

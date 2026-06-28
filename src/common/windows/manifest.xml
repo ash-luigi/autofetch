@@ -6,7 +6,7 @@
       <supportedOS Id="{8e0f7a12-bfb3-4fe8-b9a5-48fd50a15a9a}"/><!-- 10/11 -->
     </application>
   </compatibility>
-  <assemblyIdentity type="win32" name="com.github.fastfetch" version="0.0.0.0"/>
+  <assemblyIdentity type="win32" name="com.github.ash-luigi.autofetch" version="0.0.0.0"/>
   <asmv3:application>
     <asmv3:windowsSettings>
       <activeCodePage xmlns="http://schemas.microsoft.com/SMI/2019/WindowsSettings">UTF-8</activeCodePage>

@@ -51,7 +51,7 @@ static pid_t getShellInfo(FFShellResult* result, pid_t pid) {
                 ffStrbufEqualS(&result->processName, "time") ||
                 ffStrbufEqualS(&result->processName, "clifm") || // https://github.com/leo-arch/clifm/issues/289
                 ffStrbufEqualS(&result->processName, "valgrind") ||
-                ffStrbufEqualS(&result->processName, "fastfetch") || // #994
+                ffStrbufEqualS(&result->processName, "autofetch") || // #994
                 ffStrbufEqualS(&result->processName, "flashfetch") ||
                 ffStrbufEqualS(&result->processName, "proot") ||
                 ffStrbufEqualS(&result->processName, "script") ||

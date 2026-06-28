@@ -1,0 +1,50 @@
+{
+  "name": "autofetch",
+  "version": "2.65.1",
+  "description": "System information fetching tool with automatic OS logo detection and text art generation. Forked from fastfetch.",
+  "main": "bin/autofetch.js",
+  "bin": {
+    "autofetch": "bin/autofetch.js"
+  },
+  "scripts": {
+    "postinstall": "node scripts/install.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ash-luigi/autofetch.git"
+  },
+  "keywords": [
+    "system-info",
+    "neofetch",
+    "fetch",
+    "system-information",
+    "cli",
+    "logo",
+    "text-art"
+  ],
+  "author": "Ash Luigi",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/ash-luigi/autofetch/issues"
+  },
+  "homepage": "https://github.com/ash-luigi/autofetch#readme",
+  "os": [
+    "darwin",
+    "linux",
+    "win32"
+  ],
+  "cpu": [
+    "x64",
+    "arm64"
+  ],
+  "engines": {
+    "node": ">=14.0.0"
+  },
+  "files": [
+    "bin/",
+    "scripts/",
+    "README.md",
+    "LICENSE"
+  ]
+}
