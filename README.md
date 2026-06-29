@@ -29,58 +29,10 @@ Some distributions package outdated versions of autofetch. Older versions receiv
     <img src="https://repology.org/badge/vertical-allrepos/autofetch.svg?columns=2" alt="Packaging status" align="right">
 </a>
 
-* Ubuntu: [`ppa:zhangsongcui3371/autofetch`](https://launchpad.net/~zhangsongcui3371/+archive/ubuntu/autofetch) (Ubuntu 22.04 or newer; latest version)
-* Debian / Ubuntu: `apt install autofetch` (Debian 13 or newer; Ubuntu 25.04 or newer)
-* Debian / Ubuntu: Download `autofetch-linux-<proper architecture>.deb` from [Github release page](https://github.com/ash-luigi/autofetch/releases/latest) and double-click it (for Ubuntu 20.04 or newer and Debian 11 or newer).
-* Arch Linux: `pacman -S autofetch`
-* Fedora: `dnf install autofetch`
-* Gentoo: `emerge --ask app-misc/autofetch`
-* Alpine: `apk add --upgrade autofetch`
-* NixOS: `nix-shell -p autofetch`
-* openSUSE: `zypper install autofetch`
-* ALT Linux: `apt-get install autofetch`
-* Exherbo: `cave resolve --execute app-misc/autofetch`
-* Solus: `eopkg install autofetch`
-* Slackware: `sbopkg -i autofetch`
-* Void Linux: `xbps-install autofetch`
-* Venom Linux: `scratch install autofetch`
+Use 'npm install autofetch' on any os that has npm instaled
 
 You may need `sudo`, `doas`, or `sup` to run these commands.
 
-If autofetch is not packaged for your distribution or an outdated version is packaged, [linuxbrew](https://brew.sh/) is a good alternative: `brew install autofetch`
-
-### macOS
-
-* [Homebrew](https://formulae.brew.sh/formula/autofetch#default): `brew install autofetch`
-* [MacPorts](https://ports.macports.org/port/autofetch/): `sudo port install autofetch`
-
-### Windows
-
-* [scoop](https://scoop.sh/#/apps?q=autofetch): `scoop install autofetch`
-* [Chocolatey](https://community.chocolatey.org/packages/autofetch): `choco install autofetch`
-* [winget](https://github.com/microsoft/winget-pkgs/tree/master/manifests/f/ash-luigi/autofetch): `winget install autofetch`
-* [MSYS2 MinGW](https://packages.msys2.org/base/mingw-w64-autofetch): `pacman -S mingw-w64-<subsystem>-<arch>-autofetch`
-
-You may also download the program directly from [the GitHub releases page](https://github.com/ash-luigi/autofetch/releases/latest) in the form of an archive file.
-
-### BSD systems
-
-* FreeBSD: `pkg install autofetch`
-* NetBSD: `pkgin in autofetch`
-* OpenBSD: `pkg_add autofetch` (Snapshots only)
-* DragonFly BSD: `pkg install autofetch` (Snapshots only)
-
-### Android (Termux)
-
-* `pkg install autofetch`
-
-### Nightly
-
-<https://nightly.link/ash-luigi/autofetch/workflows/ci/dev?preview>
-
-## Build from source
-
-See the Wiki: https://github.com/ash-luigi/autofetch/wiki/Building
 
 ## Usage
 
@@ -116,7 +68,6 @@ autofetch supports a `Command` module that can run arbitrary shell commands. If 
 
 A local IP address (10.x.x.x, 172.x.x.x, 192.168.x.x) has nothing to do with privacy. It only has meaning if you are on the same network, for example, if you connect to the same Wi-Fi network.
 
-Actually, the `Local IP` module is the most useful module for me personally. I (@CarterLi) have several VMs installed to test autofetch and often need to SSH into them. With autofetch running on shell startup, I never need to type `ip addr` manually.
 
 If you really don't like it, you can disable the `Local IP` module in `config.jsonc`.
 
@@ -136,9 +87,6 @@ This is an example that [changes size prefix from MiB / GiB to MB / GB](https://
 
 [![asciicast](https://asciinema.org/a/1uF6sTPGKrHKI1MVaFcikINSQ.svg)](https://asciinema.org/a/1uF6sTPGKrHKI1MVaFcikINSQ)
 
-### Q: I WANT THE DOCUMENTATION!
-
-[Here is the documentation](https://github.com/ash-luigi/autofetch/wiki/Json-Schema). It is generated from the [JSON schema](https://github.com/ash-luigi/autofetch/blob/dev/doc/json_schema.json), but you might not find it very user-friendly.
 
 ### Q: How can I customize the module output?
 
@@ -191,9 +139,7 @@ See [#1096](https://github.com/ash-luigi/autofetch/issues/1096).
 
 Neofetch incorrectly counts `rc` packages (packages that have been removed but still have configuration files remaining). See bug: https://github.com/dylanaraps/neofetch/issues/2278
 
-### Q: I use Debian / Ubuntu / Debian-derived distro. My GPU is detected as `XXXX Device XXXX (VGA compatible)`. Is this a bug?
-
-Try upgrading `pci.ids`: Download <https://pci-ids.ucw.cz/v2.2/pci.ids> and overwrite the file `/usr/share/hwdata/pci.ids`. For AMD GPUs, you should also upgrade `amdgpu.ids`: Download <https://gitlab.freedesktop.org/mesa/drm/-/raw/main/data/amdgpu.ids> and overwrite the file `/usr/share/libdrm/amdgpu.ids`
+### Q: I use Debian / Ubuntu / Debian-derived distro. My GPU is detected as `XXXX Device XXXX (VGA compatible)`. Is this a bug
 
 Alternatively, you may try using `autofetch --gpu-driver-specific`, which will make autofetch attempt to ask the driver for the GPU name if supported.
 
@@ -308,12 +254,6 @@ Otherwise, please open a feature request in [GitHub Issues](https://github.com/a
 * For usage questions, please start a discussion in [GitHub Discussions](https://github.com/ash-luigi/autofetch/discussions).
 * For possible bugs, please open an issue in [GitHub Issues](https://github.com/ash-luigi/autofetch/issues). Be sure to fill out the bug report template carefully to help developers investigate.
 
-## Donate
-
-If you find autofetch useful, please consider donating.
-
-* Current maintainer: [@CarterLi](https://paypal.me/zhangsongcui)
-* Original author: [@LinusDierheimer](https://github.com/sponsors/LinusDierheimer)
 
 ## Code signing
 
