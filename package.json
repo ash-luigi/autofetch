@@ -1,5 +1,5 @@
 {
-  "name": "autofetch",
+  "name": "autofetch-install",
   "version": "2.65.1",
   "description": "System information fetching tool with automatic OS logo detection and text art generation. Forked from fastfetch.",
   "main": "bin/autofetch.js",
